@@ -1,8 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Mobile Menu Toggle logic
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navLinksContainer = document.querySelector('.nav-links');
+
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navLinksContainer.classList.toggle('active');
+        });
+    }
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
+            
+            // Close mobile menu when a link is clicked
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                navLinksContainer.classList.remove('active');
+            }
             const targetElem = document.querySelector(this.getAttribute('href'));
             if (targetElem) {
                 targetElem.scrollIntoView({
