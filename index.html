@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gibin Krishna VT - Video Editor & Creative</title>
+    <meta name="description" content="Portfolio of Gibin Krishna VT - Video Editor, Motion Designer & Graphic Designer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">GIBIN.</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active-nav">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="mailto:gibingibin7@gmail.com" class="btn btn-gradient">Hire Me</a>
+    </nav>
+
+    <main>
+        <div id="floating-icons-container">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobepremierepro.svg" class="floating-icon" data-speed="0.25" style="top: 15%; left: 8%; width: 50px; opacity: 0.4; filter: invert(1);">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobeaftereffects.svg" class="floating-icon" data-speed="-0.15" style="top: 45%; right: 12%; width: 70px; opacity: 0.45; filter: invert(1);">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobephotoshop.svg" class="floating-icon" data-speed="0.35" style="top: 75%; left: 18%; width: 40px; opacity: 0.35; filter: blur(1px) invert(1);">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/adobeillustrator.svg" class="floating-icon" data-speed="-0.2" style="top: 85%; right: 20%; width: 55px; opacity: 0.4; filter: invert(1);">
+            <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/figma.svg" class="floating-icon" data-speed="0.4" style="top: 30%; right: 30%; width: 80px; opacity: 0.25; filter: blur(3px) invert(1);">
+            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 19l7-7 3 3-7 7-3-3z'/%3E%3Cpath d='M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z'/%3E%3Cpath d='M2 2l7.586 7.586'/%3E%3Ccircle cx='11' cy='11' r='2'/%3E%3C/svg%3E" class="floating-icon" data-speed="0.3" style="top: 25%; left: 25%; width: 45px; opacity: 0.3;">
+            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='6' cy='6' r='3'/%3E%3Ccircle cx='6' cy='18' r='3'/%3E%3Cline x1='20' y1='4' x2='8.12' y2='15.88'/%3E%3Cline x1='14.47' y1='14.48' x2='20' y2='20'/%3E%3Cline x1='8.12' y1='8.12' x2='12' y2='12'/%3E%3C/svg%3E" class="floating-icon" data-speed="-0.25" style="top: 55%; left: 12%; width: 50px; opacity: 0.35; filter: blur(1px);">
+            <img src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 7 4 4 20 4 20 7'/%3E%3Cline x1='9' y1='20' x2='15' y2='20'/%3E%3Cline x1='12' y1='4' x2='12' y2='20'/%3E%3C/svg%3E" class="floating-icon" data-speed="0.2" style="top: 80%; right: 35%; width: 55px; opacity: 0.4;">
+        </div>
+        <section id="home" class="hero fade-in-section">
+            <canvas id="bg-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;"></canvas>
+            <div class="hero-content">
+                <div class="tag slide-up" style="animation-delay: 0.1s;">
+                    <span class="dot"></span> AVAILABLE FOR PROJECTS
+                </div>
+                <h1 class="slide-up" style="animation-delay: 0.2s;">Hey, I'm</h1>
+                <h1 class="gradient-text-cream title-large slide-up" style="animation-delay: 0.3s;">GIBIN KRISHNA VT</h1>
+                <div class="subtitle-wrap slide-up" style="animation-delay: 0.4s;">
+                    <h2><span class="underlined-text">VIDEO EDITOR</span></h2>
+                </div>
+                <p class="hero-desc slide-up" style="animation-delay: 0.5s;">
+                    I'm a video editor focused on storytelling, pacing, and visual impact. I also have experience in motion graphics and graphic design.
+                </p>
+                <div class="hero-divider slide-up" style="animation-delay: 0.55s;"></div>
+                <div class="numbers slide-up" style="animation-delay: 0.6s;">
+                    <a href="#projects" class="num-block" data-target="video">
+                        <span class="num">01</span>
+                        <span class="num-label">VIDEO EDITING</span>
+                    </a>
+                    <a href="#projects" class="num-block" data-target="motion">
+                        <span class="num">02</span>
+                        <span class="num-label">MOTION GRAPHICS</span>
+                    </a>
+                    <a href="#projects" class="num-block" data-target="graphic">
+                        <span class="num">03</span>
+                        <span class="num-label">GRAPHIC DESIGN</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image slide-up" style="animation-delay: 0.4s;">
+                <img src="assets/hero.png" alt="Gibin Krishna VT">
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2 class="section-title gradient-text-cream">ABOUT ME</h2>
+            <div class="about-content">
+                <p>I'm a video editor focused on storytelling, pacing, and visual impact. I also have experience in motion graphics and graphic design.</p>
+                <p>With a passion for visual storytelling, I bring ideas to life through expert video editing, dynamic motion graphics, and compelling graphic design. Every project is an opportunity to create something memorable.</p>
+            </div>
+            
+            <div class="tools-section">
+                <h3>TOOLS & SOFTWARE</h3>
+                <div class="tools-grid">
+                    <span class="tool-pill">Adobe Premiere Pro</span>
+                    <span class="tool-pill">After Effects</span>
+                    <span class="tool-pill">Photoshop</span>
+                    <span class="tool-pill">Illustrator</span>
+                    <span class="tool-pill">Figma</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2 class="section-title gradient-text-cream">FEATURED PROJECTS</h2>
+            <p class="section-sub">A selection of my recent work</p>
+
+            <div class="tabs">
+                <button class="tab-btn active" data-target="video">VIDEO EDITING</button>
+                <button class="tab-btn" data-target="motion">MOTION GRAPHICS</button>
+                <button class="tab-btn" data-target="graphic">GRAPHIC DESIGN</button>
+            </div>
+
+            <div class="project-grid" id="project-container">
+                <!-- VIDEO EDITING -->
+                <div class="project-card video show" data-video="https://www.youtube.com/embed/pFt8VJ3xRrw?si=EhHQhdBawKBSFCQR">
+                    <div class="card-img" style="background:#111133;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862447/WhatsApp_Image_2026-03-26_at_10.05.10_AM_mxym9a.jpg" alt="Akale Short Film">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">VIDEO EDITING</span>
+                        <h4>AKALE SHORT FILM</h4>
+                        <p>Short film editing</p>
+                    </div>
+                </div>
+
+                <div class="project-card video show" data-video="https://www.youtube.com/embed/2jCaxPD6Cxk">
+                    <div class="card-img" style="background:#1c243a;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847137/images_n74csi.webp" alt="Mahesh Narayanan Edit">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">VIDEO EDITING</span>
+                        <h4>MAHESH NARAYANAN EDIT</h4>
+                        <p>Tribute edit</p>
+                    </div>
+                </div>
+                
+                <div class="project-card video show" data-video="your_video_link_here">
+                    <div class="card-img" style="background:#2d2d2d;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847164/Screenshot_98_hyruin.png" alt="Kuttichira Edit">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">VIDEO EDITING</span>
+                        <h4>KUTTICHIRA EDIT</h4>
+                        <p>Creative edit</p>
+                    </div>
+                </div>
+
+                <div class="project-card video show" data-video="your_video_link_here">
+                    <div class="card-img" style="background:#111;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847167/Screenshot_99_igiffd.png" alt="Car Edit">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">VIDEO EDITING</span>
+                        <h4>CAR EDIT</h4>
+                        <p>Automotive video editing</p>
+                    </div>
+                </div>
+
+                <!-- MOTION GRAPHICS -->
+                <div class="project-card motion" data-video="https://www.youtube.com/embed/qrKK5bLKyZA">
+                    <div class="card-img" style="background:#5522ff;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847165/Screenshot_101_mg1mfa.png" alt="Lyrical Animation">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">MOTION GRAPHICS</span>
+                        <h4>LYRICAL ANIMATION</h4>
+                        <p>Music lyrical video animation</p>
+                    </div>
+                </div>
+
+                <div class="project-card motion" data-video="https://www.youtube.com/embed/F7qzZIwCQyU?si=WGrcpKMPtOUjiJSr">
+                    <div class="card-img" style="background:#2255ff;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847167/Screenshot_103_tau75b.png" alt="New Balance Animation">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">MOTION GRAPHICS</span>
+                        <h4>NEW BALANCE ANIMATION</h4>
+                        <p>Brand animation</p>
+                    </div>
+                </div>
+
+                <div class="project-card motion" data-video="https://www.youtube.com/embed/mquw6dqGxXQ">
+                    <div class="card-img" style="background:#ffcc00;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847166/Screenshot_100_gcphgv.png" alt="Lays Animation Poster">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">MOTION GRAPHICS</span>
+                        <h4>LAYS ANIMATION POSTER</h4>
+                        <p>Animated promotional poster</p>
+                    </div>
+                </div>
+
+                <div class="project-card motion" data-video="https://www.youtube.com/embed/lvABEikSBGU">
+                    <div class="card-img" style="background:#222;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847165/Screenshot_102_xaklrk.png" alt="Logo Animation">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">MOTION GRAPHICS</span>
+                        <h4>LOGO ANIMATION</h4>
+                        <p>Brand logo animation</p>
+                    </div>
+                </div>
+
+                <!-- GRAPHIC DESIGN -->
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/246453093/Apple-Carousel">
+                    <div class="card-img" style="background:#333;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862908/apple1_4x-100_zxwtyu.jpg" alt="Apple Carousel">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>APPLE CAROUSEL</h4>
+                        <p>Apple product carousel design</p>
+                    </div>
+                </div>
+
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/246425391/Pepsi-brand-poster">
+                    <div class="card-img" style="background:#005cb4;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862890/pepsi2_yyuumc.jpg" alt="Pepsi Brand Poster">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>PEPSI BRAND POSTER</h4>
+                        <p>Pepsi brand promotional poster</p>
+                    </div>
+                </div>
+                
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/246425569/La-la-Land-movie-poster">
+                    <div class="card-img" style="background:#0a3a2a;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862878/LALA_LAND_POSTER_m0hbl4.jpg" alt="La La Land Film Poster">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>LA LA LAND FILM POSTER</h4>
+                        <p>Film promotional poster</p>
+                    </div>
+                </div>
+
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/246452851/Apple-Watch-Poster">
+                    <div class="card-img" style="background:#eee;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862859/apple_watch_jv1if2.jpg" alt="Apple Watch Poster">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>APPLE WATCH POSTER</h4>
+                        <p>Product promotional poster</p>
+                    </div>
+                </div>
+                
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/246425247/Nike-Jordan-manipulation-poster">
+                    <div class="card-img" style="background:#900;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862871/jordan2_mppabb.jpg" alt="Nike Jordan Poster">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>NIKE JORDAN POSTER</h4>
+                        <p>Sneaker promotional design</p>
+                    </div>
+                </div>
+
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/238338431/BAZAAR-Magazine-cover">
+                    <div class="card-img" style="background:#444;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862864/bazaar_1_ok14az.jpg" alt="Bazaar Magazine Cover" style="object-position: top center;">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>BAZAAR MAGAZINE</h4>
+                        <p>Magazine cover design</p>
+                    </div>
+                </div>
+
+                <div class="project-card graphic">
+                    <div class="card-img" style="background:#6a2d18;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862853/ad_poster_nw_vi3lpp.jpg" alt="Milma Cake Poster">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>MILMA CAKE POSTER</h4>
+                        <p>Promotional product design</p>
+                    </div>
+                </div>
+
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/246453033/iPhone-Poster">
+                    <div class="card-img" style="background:#222;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862845/17_pro_esuen6.jpg" alt="iPhone 17 Poster">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>IPHONE 17</h4>
+                        <p>Product advertising design</p>
+                    </div>
+                </div>
+
+                <div class="project-card graphic" data-link="https://www.behance.net/gallery/237911075/Mars-Product">
+                    <div class="card-img" style="background:#900;">
+                        <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774847168/Screenshot_104_ycuq0q.png" alt="Mars Lipstick" id="mars-img">
+                    </div>
+                    <div class="card-info">
+                        <span class="category">GRAPHIC DESIGN</span>
+                        <h4>MARS LIPSTICK</h4>
+                        <p>Product promotion campaign</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="skills" class="skills">
+            <h2 class="section-title gradient-text-cream">MY SKILLS</h2>
+            <p class="section-sub">What I bring to the table</p>
+
+            <div class="skills-container">
+                <div class="skill">
+                    <div class="skill-info">
+                        <span class="skill-name">01 VIDEO EDITING</span>
+                        <span class="skill-pct">85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span class="skill-name">02 MOTION GRAPHICS</span>
+                        <span class="skill-pct">70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div class="skill">
+                    <div class="skill-info">
+                        <span class="skill-name">03 PHOTOSHOP</span>
+                        <span class="skill-pct">70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="contact-header">
+                <h2 class="gradient-text-full section-title" style="font-size: 3rem;">LET'S WORK TOGETHER</h2>
+                <p>Have a project in mind? Let's create something amazing together.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>GET IN TOUCH</h3>
+                    <div class="contact-links">
+                        <a href="mailto:gibingibin7@gmail.com" class="contact-item">
+                            <span class="icon">✉</span>
+                            <span>gibingibin7@gmail.com</span>
+                        </a>
+                        <a href="tel:+919074693735" class="contact-item">
+                            <span class="icon">📞</span>
+                            <span>+91 9074693735</span>
+                        </a>
+                        <a href="https://www.behance.net/gibigibin1" class="contact-item" target="_blank" rel="noopener noreferrer">
+                            <span class="icon" style="font-weight:bold;">Bē</span>
+                            <span>Behance Portfolio</span>
+                        </a>
+                    </div>
+
+                    <div class="availability">
+                        <h3>AVAILABLE FOR</h3>
+                        <ul>
+                            <li>Freelance Projects</li>
+                            <li>Full-time Opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" placeholder="Your name">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea placeholder="Tell me about your project..." rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-full btn-gradient" style="font-size:1.1rem; padding:1rem;">
+                            <span class="icon">➤</span> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-badge">
+                <span>Made with Emergent</span>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
