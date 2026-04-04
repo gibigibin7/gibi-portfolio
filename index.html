@@ -105,6 +105,30 @@
 
             <div class="project-grid" id="project-container">
                 <!-- VIDEO EDITING -->
+                <div class="project-card video show" data-video="https://www.youtube.com/embed/0gtSswikOOE">
+                    <div class="card-img" style="background:#222;">
+                        <img src="assets/mother%20opticals.png" alt="Mother Opticals Vox Pop">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">VIDEO EDITING</span>
+                        <h4>MOTHER OPTICALS VOX POP</h4>
+                        <p>Vox pop interview</p>
+                    </div>
+                </div>
+
+                <div class="project-card video show" data-video="https://www.youtube.com/embed/bYV6I7waqgc">
+                    <div class="card-img" style="background:#111;">
+                        <img src="assets/ds%20uae%20ad.png" alt="Design School UAE Ad">
+                        <div class="play-overlay"><div class="play-btn"></div></div>
+                    </div>
+                    <div class="card-info">
+                        <span class="category">VIDEO EDITING</span>
+                        <h4>DESIGN SCHOOL UAE AD</h4>
+                        <p>Advertising video editing</p>
+                    </div>
+                </div>
+
                 <div class="project-card video show" data-video="https://www.youtube.com/embed/pFt8VJ3xRrw?si=EhHQhdBawKBSFCQR">
                     <div class="card-img" style="background:#111133;">
                         <img src="https://res.cloudinary.com/dzivgxrog/image/upload/v1774862447/WhatsApp_Image_2026-03-26_at_10.05.10_AM_mxym9a.jpg" alt="Akale Short Film">
@@ -150,30 +174,6 @@
                         <span class="category">VIDEO EDITING</span>
                         <h4>CAR EDIT</h4>
                         <p>Automotive video editing</p>
-                    </div>
-                </div>
-
-                <div class="project-card video show" data-video="https://www.youtube.com/embed/0gtSswikOOE">
-                    <div class="card-img" style="background:#222;">
-                        <img src="assets/mother%20opticals.png" alt="Mother Opticals Vox Pop">
-                        <div class="play-overlay"><div class="play-btn"></div></div>
-                    </div>
-                    <div class="card-info">
-                        <span class="category">VIDEO EDITING</span>
-                        <h4>MOTHER OPTICALS VOX POP</h4>
-                        <p>Vox pop interview</p>
-                    </div>
-                </div>
-
-                <div class="project-card video show" data-video="https://www.youtube.com/embed/bYV6I7waqgc">
-                    <div class="card-img" style="background:#111;">
-                        <img src="assets/ds%20uae%20ad.png" alt="Design School UAE Ad">
-                        <div class="play-overlay"><div class="play-btn"></div></div>
-                    </div>
-                    <div class="card-info">
-                        <span class="category">VIDEO EDITING</span>
-                        <h4>DESIGN SCHOOL UAE AD</h4>
-                        <p>Advertising video editing</p>
                     </div>
                 </div>
 
@@ -401,22 +401,23 @@
                 </div>
 
                 <div class="contact-form-wrapper">
-                    <form class="contact-form">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" placeholder="Your name">
+                            <input type="text" id="contactName" name="name" placeholder="Your name" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email" placeholder="your@email.com">
+                            <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required>
                         </div>
                         <div class="form-group">
                             <label>Message</label>
-                            <textarea placeholder="Tell me about your project..." rows="4"></textarea>
+                            <textarea id="contactMessage" name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-full btn-gradient" style="font-size:1.1rem; padding:1rem;">
-                            <span class="icon">➤</span> Send Message
+                        <button type="submit" class="btn btn-full btn-gradient" id="contactSubmit" style="font-size:1.1rem; padding:1rem;">
+                            <span class="icon">➤</span> <span id="submitText">Send Message</span>
                         </button>
+                        <p id="formStatus" style="margin-top: 1rem; font-size: 0.9rem; text-align: center; display: none;"></p>
                     </form>
                 </div>
             </div>

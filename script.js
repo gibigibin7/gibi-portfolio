@@ -242,4 +242,72 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
     }
+
+    // Contact Form Logic
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('contactSubmit');
+    const submitText = document.getElementById('submitText');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            // UI feedback
+            submitBtn.disabled = true;
+            submitText.textContent = 'Sending...';
+            formStatus.style.display = 'none';
+
+            // Send Email via FormSubmit AJAX API
+            fetch("https://formsubmit.co/ajax/gibingibin7@gmail.com", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    message: message,
+                    _subject: `New Portfolio Message from ${name}`
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success message
+                    formStatus.textContent = 'Message sent successfully! Redirecting to WhatsApp...';
+                    formStatus.style.color = '#4ade80';
+                    formStatus.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Format message for WhatsApp
+                    const waText = encodeURIComponent(`Hello Gibin,\n\nI just reached out from your portfolio website.\n\n*Name:* ${name}\n*Email:* ${email}\n*Message:*\n${message}`);
+                    
+                    // Redirect to WhatsApp
+                    setTimeout(() => {
+                        window.open(`https://wa.me/919074693735?text=${waText}`, '_blank');
+                    }, 1500);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formStatus.textContent = 'Oops! Something went wrong. Please try again.';
+                formStatus.style.color = '#f87171';
+                formStatus.style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.disabled = false;
+                submitText.textContent = 'Send Message';
+            });
+        });
+    }
 });
