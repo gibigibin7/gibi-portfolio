@@ -168,8 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const posArray = new Float32Array(particlesCount * 3);
         const colorArray = new Float32Array(particlesCount * 3);
 
-        const color1 = new THREE.Color('#e5cba0'); // Cream
-        const color2 = new THREE.Color('#8c111c'); // Burgundy
+        const color1 = new THREE.Color('#3B82F6'); // Cream
+        const color2 = new THREE.Color('#FF7A59'); // Burgundy
 
         for(let i = 0; i < particlesCount * 3; i+=3) {
             // Position
@@ -311,3 +311,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
