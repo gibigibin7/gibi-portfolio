@@ -102,11 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let soundTimeouts = []; // Track active sound timers to clear them on rapid click
     
     tabs.forEach(tab => {
-        tab.addEventListener('click', async () => {
+        tab.addEventListener('click', () => {
             if (tab.classList.contains('active')) return;
 
-            // Initialize/Resume Audio and WAIT for it to be ready
-            await initAudio();
+            // Trigger Audio wake-up in background (NO await)
+            initAudio();
 
             const target = tab.getAttribute('data-target');
             
@@ -114,40 +114,45 @@ document.addEventListener('DOMContentLoaded', () => {
             soundTimeouts.forEach(t => clearTimeout(t));
             soundTimeouts = [];
 
-            // Phase 1: Instant Reset
+            // Phase 1: High-Performance Reset
+            // Only reset cards that are actually relevant or visible to save CPU
             projectCards.forEach(card => {
-                card.classList.remove('show');
-                card.classList.remove('hiding');
-                card.style.animation = 'none'; // Reset animation state
-                // Force reflow
-                void card.offsetWidth;
+                if (card.classList.contains('show') || card.classList.contains('active')) {
+                    card.classList.remove('show');
+                    card.style.animation = 'none';
+                    void card.offsetWidth; // Force reflow only for these
+                }
             });
 
             // Update tab buttons
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
-            // Phase 2: Instant Reveal with Optimized Sound
-            // Small safety buffer to ensure audio clock is ticking
-            setTimeout(() => {
+            // Phase 2: Instant Reveal
+            requestAnimationFrame(() => {
                 revealNewCards(target);
-            }, 50); 
+            }); 
         });
     });
 
     function revealNewCards(target) {
         let count = 0;
         let soundCount = 0;
+        const staggerDelay = 0.06; // Faster stagger for snappier feel
+
         projectCards.forEach(card => {
             if (card.classList.contains(target) || target === 'all') {
-                const delay = count * 0.08;
-                card.style.animation = `pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s forwards, floating 4s ease-in-out ${delay + 0.6}s infinite`;
+                const delay = count * staggerDelay;
+                card.style.animation = `pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s forwards, floating 4s ease-in-out ${delay + 0.5}s infinite`;
                 card.classList.add('show');
                 
-                // Play sound capped to first 5 cards for clarity and performance
+                // Play sound capped to first 5 cards
+                // Only play if audio context exists and is running (catch-up logic)
                 if (soundCount < 5) {
                     const timer = setTimeout(() => {
-                        playLuxuryPop();
+                        if (audioCtx && audioCtx.state === 'running') {
+                            playLuxuryPop();
+                        }
                     }, delay * 1000);
                     soundTimeouts.push(timer);
                     soundCount++;
