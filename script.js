@@ -110,6 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initial load state: Show Video Editing by default
+    revealNewCards('video');
+
     // Direct link to YouTube Logic
     projectCards.forEach(card => {
         card.addEventListener('click', () => {
