@@ -43,11 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
+        if (audioCtx && audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
     }
+
+    // Unlock audio on first interaction
+    window.addEventListener('click', initAudio, { once: true });
+    window.addEventListener('touchstart', initAudio, { once: true });
 
     function playLuxuryPop() {
         initAudio();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         oscillator.type = 'sine';
@@ -63,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function playSlideWhoosh() {
         initAudio();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         oscillator.type = 'sine';
@@ -80,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function playLetterTick() {
         initAudio();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         oscillator.type = 'sine';
@@ -432,34 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Entrance Overlay & Audio Activation ---
-    const entranceOverlay = document.getElementById('entrance-overlay');
-    const exploreBtn = document.getElementById('explore-btn');
-    const mainContent = document.getElementById('main-content');
     const heroImage = document.querySelector('.hero-image');
-
-    // Lock body initially
-    document.body.classList.add('locked');
-
-    if (exploreBtn && entranceOverlay) {
-        exploreBtn.addEventListener('click', () => {
-            // 1. Initialize & Unlock Audio
-            initAudio();
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
-
-            // 2. Dismiss Overlay
-            entranceOverlay.classList.add('dismissed');
-            document.body.classList.remove('locked');
-            
-            // 3. Show Content & Trigger Animations
-            setTimeout(() => {
-                if (mainContent) mainContent.style.opacity = '1';
-                startEntranceAnimations();
-            }, 600); // Wait for overlay slide-up part way
-        });
-    }
 
     function startEntranceAnimations() {
         // --- Letter-by-Letter Name Animation ---
@@ -472,23 +449,26 @@ document.addEventListener('DOMContentLoaded', () => {
             text.split('').forEach((char, i) => {
                 const span = document.createElement('span');
                 span.textContent = char === ' ' ? '\u00A0' : char; // Handle spaces
-                const delay = i * 0.05;
+                const delay = i * 0.05 + 0.5; // Start after 0.5s for clean entrance
                 span.style.animationDelay = `${delay}s`;
                 span.className = 'letter';
                 nameElement.appendChild(span);
 
-                // Trigger sparkle sound for each letter with a small initial offset
+                // Attempt sparkle sound (may be blocked by browser on first load)
                 setTimeout(() => {
-                    playLetterTick();
-                }, (delay + 0.2) * 1000);
+                    if (audioCtx && audioCtx.state === 'running') playLetterTick();
+                }, delay * 1000);
             });
         }
 
-        // --- Profile Picture Slide ---
+        // --- Profile Picture Animation ---
         setTimeout(() => {
             if (heroImage) heroImage.classList.add('animate');
-            playSlideWhoosh();
-        }, 800); 
+            if (audioCtx && audioCtx.state === 'running') playSlideWhoosh();
+        }, 1200); 
     }
+
+    // Start immediately on load
+    startEntranceAnimations();
 });
 
