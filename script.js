@@ -39,13 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Audio Synthesis for Luxury Pop ---
     let audioCtx = null;
-    function initAudio() {
+    async function initAudio() {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
         if (audioCtx && audioCtx.state === 'suspended') {
-            audioCtx.resume();
+            await audioCtx.resume();
         }
+        return audioCtx;
     }
 
     // Unlock audio on first interaction
@@ -101,11 +102,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let soundTimeouts = []; // Track active sound timers to clear them on rapid click
     
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
+        tab.addEventListener('click', async () => {
             if (tab.classList.contains('active')) return;
 
-            // Initialize/Resume Audio only once per click
-            initAudio();
+            // Initialize/Resume Audio and WAIT for it to be ready
+            await initAudio();
 
             const target = tab.getAttribute('data-target');
             
@@ -126,8 +127,11 @@ document.addEventListener('DOMContentLoaded', () => {
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
 
-            // Phase 2: Instant Reveal with Sound
-            revealNewCards(target);
+            // Phase 2: Instant Reveal with Optimized Sound
+            // Small safety buffer to ensure audio clock is ticking
+            setTimeout(() => {
+                revealNewCards(target);
+            }, 50); 
         });
     });
 
