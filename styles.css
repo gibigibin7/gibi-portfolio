@@ -263,6 +263,13 @@ a {
     }
 }
 
+.letter:hover {
+    transform: translateY(-10px) scale(1.1);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    text-shadow: 0 0 20px rgba(165, 27, 46, 0.4);
+}
+
 /* Custom Cursor Styles */
 .cursor-dot,
 .cursor-outline {
@@ -360,8 +367,18 @@ a {
     justify-content: flex-end;
     position: relative;
     z-index: 2;
+    opacity: 0;
+    transform: translateX(100px); /* Start outside frame */
+    animation: image-reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.8s;
 }
 
+@keyframes image-reveal {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
 .hero-image img {
     max-width: 100%;
