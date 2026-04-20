@@ -368,9 +368,9 @@ a {
     position: relative;
     z-index: 2;
     opacity: 0;
-    transform: translateX(100px); /* Start outside frame */
-    animation: image-reveal 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.8s;
+    transform: translateX(150px); /* Slightly further back for more impact */
+    animation: image-reveal 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; /* Slower and more fluid */
+    animation-delay: 1s;
 }
 
 @keyframes image-reveal {
