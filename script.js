@@ -39,29 +39,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Audio Synthesis for Luxury Pop ---
     let audioCtx = null;
-    function playLuxuryPop() {
+    function initAudio() {
         if (!audioCtx) {
             audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-        
+    }
+
+    function playLuxuryPop() {
+        initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
-
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.05);
-
         gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
-
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
-
         oscillator.start();
         oscillator.stop(audioCtx.currentTime + 0.05);
+    }
+
+    function playSlideWhoosh() {
+        initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(100, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.8);
+        gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+        gainNode.gain.linearRampToValueAtTime(0.1, audioCtx.currentTime + 0.4);
+        gainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.8);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.8);
+    }
+
+    function playLetterTick() {
+        initAudio();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(1500, audioCtx.currentTime);
+        oscillator.frequency.setValueAtTime(800, audioCtx.currentTime + 0.03);
+        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.03);
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.03);
     }
 
     // Tab Interface for Projects
@@ -411,10 +441,21 @@ document.addEventListener('DOMContentLoaded', () => {
         text.split('').forEach((char, i) => {
             const span = document.createElement('span');
             span.textContent = char === ' ' ? '\u00A0' : char; // Handle spaces
-            span.style.animationDelay = `${0.3 + (i * 0.05)}s`;
+            const delay = 0.3 + (i * 0.05);
+            span.style.animationDelay = `${delay}s`;
             span.className = 'letter';
             nameElement.appendChild(span);
+
+            // Trigger sparkle sound for each letter
+            setTimeout(() => {
+                playLetterTick();
+            }, delay * 1000);
         });
     }
+
+    // --- Profile Picture Slide Sound ---
+    setTimeout(() => {
+        playSlideWhoosh();
+    }, 1000); // Sync with CSS: 1s delay
 });
 
