@@ -168,8 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const posArray = new Float32Array(particlesCount * 3);
         const colorArray = new Float32Array(particlesCount * 3);
 
-        const color1 = new THREE.Color('#3B82F6'); // Cream
-        const color2 = new THREE.Color('#FF7A59'); // Burgundy
+        const color1 = new THREE.Color('#6D001A'); // Burgundy
+        const color2 = new THREE.Color('#B5AC8A'); // Dusty Olive
 
         for(let i = 0; i < particlesCount * 3; i+=3) {
             // Position
@@ -308,6 +308,57 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.disabled = false;
                 submitText.textContent = 'Send Message';
             });
+        });
+    }
+
+    // --- Custom Cursor Logic ---
+    const cursorDot = document.querySelector('.cursor-dot');
+    const cursorOutline = document.querySelector('.cursor-outline');
+
+    window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+
+        // Instant position for the dot
+        if (cursorDot) {
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+        }
+
+        // Smooth position for the outline
+        if (cursorOutline) {
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        }
+    });
+
+    // Cursor hover effects
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .tab-btn, .num-block, .logo');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            if (cursorOutline) cursorOutline.classList.add('cursor-hover');
+            if (cursorDot) cursorDot.classList.add('cursor-hover-dot');
+        });
+        el.addEventListener('mouseleave', () => {
+            if (cursorOutline) cursorOutline.classList.remove('cursor-hover');
+            if (cursorDot) cursorDot.classList.remove('cursor-hover-dot');
+        });
+    });
+
+    // --- Letter-by-Letter Name Animation ---
+    const nameElement = document.querySelector('.name-gradient');
+    if (nameElement) {
+        const text = nameElement.textContent;
+        nameElement.textContent = '';
+        
+        text.split('').forEach((char, i) => {
+            const span = document.createElement('span');
+            span.textContent = char === ' ' ? '\u00A0' : char; // Handle spaces
+            span.style.animationDelay = `${0.3 + (i * 0.05)}s`;
+            span.className = 'letter';
+            nameElement.appendChild(span);
         });
     }
 });
