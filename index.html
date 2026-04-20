@@ -11,8 +11,16 @@
     <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
+    <div id="entrance-overlay" class="entrance-overlay">
+        <div class="entrance-content">
+            <h1 class="logo-large">GIBIN.</h1>
+            <p>Ready for a cinematic experience?</p>
+            <button id="explore-btn" class="btn btn-full btn-gradient">UNVEIL PORTFOLIO</button>
+        </div>
+    </div>
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
+    <div id="main-content" style="opacity: 0; transition: opacity 1s ease-in-out;">
     <nav class="navbar">
         <div class="logo">GIBIN.</div>
         <div class="menu-toggle" id="mobile-menu">
@@ -426,6 +434,7 @@
         </section>
     </main>
 
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script src="script.js?v=2"></script>
