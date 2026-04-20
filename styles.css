@@ -533,13 +533,32 @@ section {
 }
 
 .project-card {
+    display: none;
     background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform-style: preserve-3d;
     border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Clean, professional shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.project-card.show {
+    display: block;
+    animation: staggered-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.project-card.hiding {
+    animation: fade-out-down 0.4s ease-in forwards;
+}
+
+@keyframes staggered-pop {
+    0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fade-out-down {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(20px) scale(0.95); }
 }
 
 .project-card:hover {

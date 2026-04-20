@@ -43,20 +43,48 @@ document.addEventListener('DOMContentLoaded', () => {
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
+            if (tab.classList.contains('active')) return; // Don't re-trigger for active tab
+
+            const target = tab.getAttribute('data-target');
+            const currentlyShown = document.querySelectorAll('.project-card.show');
+
+            // Phase 1: Smooth Fade Out
+            if (currentlyShown.length > 0) {
+                currentlyShown.forEach(card => {
+                    card.classList.add('hiding');
+                    card.classList.remove('show');
+                });
+
+                // Wait for fade-out to complete (400ms matches CSS)
+                setTimeout(() => {
+                    revealNewCards(target);
+                }, 400);
+            } else {
+                // If nothing is shown, reveal instantly
+                revealNewCards(target);
+            }
+
+            // Update tab buttons
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            
-            const target = tab.getAttribute('data-target');
-            
-            projectCards.forEach(card => {
-                if (card.classList.contains(target) || target === 'all') {
-                    card.classList.add('show');
-                } else {
-                    card.classList.remove('show');
-                }
-            });
         });
     });
+
+    function revealNewCards(target) {
+        let count = 0;
+        projectCards.forEach(card => {
+            card.classList.remove('hiding');
+            card.classList.remove('show');
+            card.style.animationDelay = '0s'; // Reset
+
+            if (card.classList.contains(target) || target === 'all') {
+                // Add staggered delay
+                card.style.animationDelay = `${count * 0.1}s`;
+                card.classList.add('show');
+                count++;
+            }
+        });
+    }
 
     // Direct link to YouTube Logic
     projectCards.forEach(card => {
