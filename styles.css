@@ -544,16 +544,18 @@ section {
 
 .project-card.show {
     display: block;
-    animation: staggered-pop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    opacity: 0; /* JS handles triggering the animation */
 }
 
-.project-card.hiding {
-    animation: fade-out-down 0.4s ease-in forwards;
-}
-
-@keyframes staggered-pop {
-    0% { opacity: 0; transform: translateY(30px) scale(0.9); }
+@keyframes pop-in {
+    0% { opacity: 0; transform: translateY(40px) scale(0.85); }
     100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
 }
 
 @keyframes fade-out-down {

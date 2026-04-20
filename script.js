@@ -37,50 +37,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // --- Audio Synthesis for Luxury Pop ---
+    let audioCtx = null;
+    function playLuxuryPop() {
+        if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+        }
+        
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+
+        oscillator.type = 'sine'; // Soft, clean sound
+        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+
+        gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.1);
+    }
+
     // Tab Interface for Projects
     const tabs = document.querySelectorAll('.tab-btn');
     const projectCards = document.querySelectorAll('.project-card');
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
-            if (tab.classList.contains('active')) return; // Don't re-trigger for active tab
+            if (tab.classList.contains('active')) return;
 
             const target = tab.getAttribute('data-target');
-            const currentlyShown = document.querySelectorAll('.project-card.show');
-
-            // Phase 1: Smooth Fade Out
-            if (currentlyShown.length > 0) {
-                currentlyShown.forEach(card => {
-                    card.classList.add('hiding');
-                    card.classList.remove('show');
-                });
-
-                // Wait for fade-out to complete (400ms matches CSS)
-                setTimeout(() => {
-                    revealNewCards(target);
-                }, 400);
-            } else {
-                // If nothing is shown, reveal instantly
-                revealNewCards(target);
-            }
+            
+            // Phase 1: Instant Reset
+            projectCards.forEach(card => {
+                card.classList.remove('show');
+                card.classList.remove('hiding');
+                card.style.animation = 'none'; // Reset animation state
+                // Force reflow
+                void card.offsetWidth;
+            });
 
             // Update tab buttons
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
+
+            // Phase 2: Instant Reveal with Sound
+            revealNewCards(target);
         });
     });
 
     function revealNewCards(target) {
         let count = 0;
         projectCards.forEach(card => {
-            card.classList.remove('hiding');
-            card.classList.remove('show');
-            card.style.animationDelay = '0s'; // Reset
-
             if (card.classList.contains(target) || target === 'all') {
-                // Add staggered delay
-                card.style.animationDelay = `${count * 0.1}s`;
+                const delay = count * 0.08;
+                card.style.animation = `pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s forwards, floating 4s ease-in-out ${delay + 0.6}s infinite`;
                 card.classList.add('show');
+                
+                // Play sound with the same stagger delay
+                setTimeout(() => {
+                    playLuxuryPop();
+                }, delay * 1000);
+                
                 count++;
             }
         });
