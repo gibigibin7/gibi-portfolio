@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchstart', initAudio, { once: true });
 
     function playLuxuryPop() {
-        initAudio();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         oscillator.type = 'sine';
@@ -68,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function playSlideWhoosh() {
-        initAudio();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         oscillator.type = 'sine';
@@ -84,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function playLetterTick() {
-        initAudio();
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
         oscillator.type = 'sine';
@@ -101,13 +98,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tab Interface for Projects
     const tabs = document.querySelectorAll('.tab-btn');
     const projectCards = document.querySelectorAll('.project-card');
+    let soundTimeouts = []; // Track active sound timers to clear them on rapid click
     
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             if (tab.classList.contains('active')) return;
 
+            // Initialize/Resume Audio only once per click
+            initAudio();
+
             const target = tab.getAttribute('data-target');
             
+            // Clear any pending sounds from previous clicks
+            soundTimeouts.forEach(t => clearTimeout(t));
+            soundTimeouts = [];
+
             // Phase 1: Instant Reset
             projectCards.forEach(card => {
                 card.classList.remove('show');
@@ -128,16 +133,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function revealNewCards(target) {
         let count = 0;
+        let soundCount = 0;
         projectCards.forEach(card => {
             if (card.classList.contains(target) || target === 'all') {
                 const delay = count * 0.08;
                 card.style.animation = `pop-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}s forwards, floating 4s ease-in-out ${delay + 0.6}s infinite`;
                 card.classList.add('show');
                 
-                // Play sound with the same stagger delay
-                setTimeout(() => {
-                    playLuxuryPop();
-                }, delay * 1000);
+                // Play sound capped to first 5 cards for clarity and performance
+                if (soundCount < 5) {
+                    const timer = setTimeout(() => {
+                        playLuxuryPop();
+                    }, delay * 1000);
+                    soundTimeouts.push(timer);
+                    soundCount++;
+                }
                 
                 count++;
             }
