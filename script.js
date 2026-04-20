@@ -50,18 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const oscillator = audioCtx.createOscillator();
         const gainNode = audioCtx.createGain();
 
-        oscillator.type = 'sine'; // Soft, clean sound
-        oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
-        oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+        oscillator.type = 'sine';
+        oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.05);
 
         gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
 
         oscillator.connect(gainNode);
         gainNode.connect(audioCtx.destination);
 
         oscillator.start();
-        oscillator.stop(audioCtx.currentTime + 0.1);
+        oscillator.stop(audioCtx.currentTime + 0.05);
     }
 
     // Tab Interface for Projects
