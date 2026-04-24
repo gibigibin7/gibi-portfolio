@@ -115,12 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
             soundTimeouts = [];
 
             // Phase 1: High-Performance Reset
-            // Only reset cards that are actually relevant or visible to save CPU
+            const clusters = document.querySelectorAll('.shorts-cluster');
+            clusters.forEach(c => c.classList.remove('show'));
+
             projectCards.forEach(card => {
                 if (card.classList.contains('show') || card.classList.contains('active')) {
                     card.classList.remove('show');
                     card.style.animation = 'none';
-                    void card.offsetWidth; // Force reflow only for these
+                    void card.offsetWidth; // Force reflow
                 }
             });
 
@@ -139,6 +141,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let count = 0;
         let soundCount = 0;
         const staggerDelay = 0.06; // Faster stagger for snappier feel
+
+        // Show cluster if target matches (Janatha projects are video)
+        const clusters = document.querySelectorAll('.shorts-cluster');
+        clusters.forEach(c => {
+            if (c.classList.contains(target) || target === 'all') {
+                c.classList.add('show');
+            }
+        });
 
         projectCards.forEach(card => {
             if (card.classList.contains(target) || target === 'all') {
@@ -489,5 +499,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start immediately on load
     startEntranceAnimations();
-});
 
+    // --- Magnetic Button Effect ---
+    const magneticBtns = document.querySelectorAll('.btn-gradient, .tab-btn');
+    
+    magneticBtns.forEach(btn => {
+        let btnRect = null;
+        let btnCenterX = 0;
+        let btnCenterY = 0;
+
+        btn.addEventListener('mouseenter', () => {
+            btnRect = btn.getBoundingClientRect();
+            btnCenterX = btnRect.left + btnRect.width / 2;
+            btnCenterY = btnRect.top + btnRect.height / 2;
+            // Add a temporary transition for smooth entry
+            btn.style.transition = 'transform 0.2s cubic-bezier(0.23, 1, 0.32, 1)';
+        });
+
+        btn.addEventListener('mousemove', function(e) {
+            if (!btnCenterX) return;
+            
+            const x = e.clientX - btnCenterX;
+            const y = e.clientY - btnCenterY;
+            
+            // Remove transition during mousemove for instant feedback
+            btn.style.transition = 'none';
+            btn.style.transform = `translate(${x * 0.35}px, ${y * 0.35}px) scale(1.02)`;
+        });
+        
+        btn.addEventListener('mouseleave', function(e) {
+            btn.style.transition = 'transform 0.5s cubic-bezier(0.23, 1, 0.32, 1)';
+            btn.style.transform = '';
+            btnRect = null;
+        });
+    });
+});
