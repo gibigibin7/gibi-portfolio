@@ -1015,12 +1015,17 @@ section {
     }
     
     .project-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 1rem;
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 1.5rem;
+    }
+
+    .shorts-cluster {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        gap: 1.5rem;
     }
     
     .card-img {
-        height: 120px;
+        height: 200px;
     }
     
     .card-info {
