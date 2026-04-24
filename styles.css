@@ -1015,13 +1015,13 @@ section {
     }
     
     .project-grid {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on mobile */
+        gap: 1rem;
     }
 
     .shorts-cluster {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on mobile */
+        gap: 1rem;
     }
     
     .card-img {
