@@ -580,7 +580,7 @@ section {
 }
 
 .shorts-cluster .project-card {
-    display: block !important;
+    display: block;
     width: 100%;
     opacity: 0;
 }
@@ -983,17 +983,22 @@ section {
     }
 
     .tabs {
-        flex-direction: column;
-        gap: 1rem;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+        justify-content: center;
     }
     
     .tab-btn {
-        width: 100%;
-        padding: 0.8rem;
+        flex: 1 1 auto;
+        min-width: 120px;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
     }
     
     .numbers {
-        gap: 2rem;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .skill-info {
@@ -1015,21 +1020,34 @@ section {
     }
     
     .project-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on mobile */
+        grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
-    .shorts-cluster {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on mobile */
-        gap: 1rem;
+    /* Shorts-cluster: transparent to parent grid so its cards
+       slot directly into the 2-col layout */
+    .shorts-cluster,
+    .shorts-cluster.show {
+        display: contents;
     }
+
+    /* Restore individual card display — JS adds .show */
+    .shorts-cluster .project-card {
+        display: none;
+        width: 100%;
+    }
+
+    .shorts-cluster .project-card.show {
+        display: block;
+    }
+
     
     .card-img {
-        height: 200px;
+        height: 210px;
     }
     
     .card-info {
-        padding: 0.8rem;
+        padding: 1rem;
     }
 
     .card-info .category {
@@ -1038,13 +1056,13 @@ section {
     }
     
     .card-info h4 {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin-bottom: 0.3rem;
     }
 
     .card-info p {
-        font-size: 0.8rem;
-        line-height: 1.3;
+        font-size: 0.85rem;
+        line-height: 1.4;
     }
     
     .contact-form-wrapper {
