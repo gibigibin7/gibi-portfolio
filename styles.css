@@ -565,29 +565,6 @@ section {
     border-color: rgba(109, 0, 26, 0.2);
 }
 
-/* Special Shorts Cluster (left-aligned to match grid) */
-.shorts-cluster {
-    grid-column: 1 / -1;
-    display: none;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-    gap: 2rem;
-    margin: 0 0 3rem 0;
-    width: 100%;
-}
-
-.shorts-cluster.show {
-    display: grid;
-}
-
-.shorts-cluster .project-card {
-    display: block;
-    width: 100%;
-    opacity: 0;
-}
-
-.shorts-cluster .project-card.show {
-    opacity: 1;
-}
 
 /* Centered Logo Style (matching Design School UAE AD look) */
 .centered-logo {
@@ -1024,22 +1001,7 @@ section {
         gap: 1rem;
     }
 
-    /* Shorts-cluster: transparent to parent grid so its cards
-       slot directly into the 2-col layout */
-    .shorts-cluster,
-    .shorts-cluster.show {
-        display: contents;
-    }
 
-    /* Restore individual card display — JS adds .show */
-    .shorts-cluster .project-card {
-        display: none;
-        width: 100%;
-    }
-
-    .shorts-cluster .project-card.show {
-        display: block;
-    }
 
     
     .card-img {
